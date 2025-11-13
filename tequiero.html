@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nata y Daniel 💘 Amor Galáctico</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    background: radial-gradient(circle at bottom, #0a0018, #000);
+    background-image: url('imagenes/galaxia.jpg');
+    background-size: cover;
+    background-position: center;
+    animation: fondoMov 90s linear infinite;
+    font-family: "Poppins", "Comic Sans MS", cursive;
+    color: white;
+    touch-action: manipulation;
+  }
+
+  @keyframes fondoMov {
+    from { background-position: 0 0; }
+    to { background-position: 0 1200px; }
+  }
+
+  #nata {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffb6e6;
+    text-shadow: 0 0 10px #ff69b4, 0 0 20px #ffb6e6, 0 0 40px #ff66cc;
+  }
+
+  #daniel {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 44px;
+    color: #ff3333;
+    text-shadow: 0 0 10px #ff7777, 0 0 30px #ffcccc, 0 0 50px #ff9999;
+    user-select: none;
+  }
+
+  .objeto {
+    position: absolute;
+    top: 0;
+    font-size: 38px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff, 0 0 25px #ffccff;
+    text-align: center;
+    animation: caer 6s linear;
+  }
+
+  .significado {
+    font-size: 18px;
+    color: #ffe6ff;
+    text-shadow: 0 0 8px #ffb6e6;
+  }
+
+  @keyframes caer {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  .corazon {
+    position: absolute;
+    font-size: 26px;
+    animation: flotar 1.2s ease-out;
+  }
+
+  @keyframes flotar {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-90px); opacity: 0; }
+  }
+
+  /* --- Botones visibles --- */
+  .boton {
+    position: absolute;
+    bottom: 15px;
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(145deg, #ff66cc, #ff99cc);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    line-height: 90px;
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff66cc, 0 0 40px #ff99cc;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .boton:active {
+    background: linear-gradient(145deg, #ff3385, #ff66b2);
+    transform: scale(1.1);
+  }
+
+  #btnLeft { left: 25px; }
+  #btnRight { right: 25px; }
+
+  @media (min-width: 768px) {
+    .boton { display: none; }
+  }
+
+  #contador {
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    font-size: 22px;
+    color: #ffb6e6;
+    text-shadow: 0 0 8px #ff66cc;
+  }
+
+  #mensajeFinal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: #ffffff;
+    text-shadow: 0 0 15px #ff66cc, 0 0 30px #ffb6e6;
+    text-align: center;
+    animation: aparecer 2s ease-in-out;
+  }
+
+  @keyframes aparecer {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+  }
+</style>
+</head>
+<body>
+
+<div id="nata">💘 Nata 💘</div>
+<div id="daniel">❤️ Daniel ❤️</div>
+<div id="contador">✨ 0 atrapadas ✨</div>
+<div id="mensajeFinal">💞 ¡Nata y Daniel, amor infinito en el universo! 💫</div>
+
+<!-- Botones visibles -->
+<div id="btnLeft" class="boton">⬅️</div>
+<div id="btnRight" class="boton">➡️</div>
+
+<script>
+const palabras = [
+  { palabra: "Cariñosa 💕", significado: "Da amor en cada gesto" },
+  { palabra: "Reservada 🌙", significado: "Guarda su magia solo para quien ama" },
+  { palabra: "Dulce 🍯", significado: "Su sonrisa endulza el alma" },
+  { palabra: "Especial ✨", significado: "Nadie brilla como ella" },
+  { palabra: "Auténtica 🌸", significado: "Fiel a sí misma, única" },
+  { palabra: "Mágica 🌠", significado: "Hace que todo se sienta posible" },
+  { palabra: "Increíble 💫", significado: "Llena el mundo de asombro" },
+  { palabra: "Amorosa 💖", significado: "Su ternura abraza el corazón" },
+  { palabra: "Inteligente 🌹", significado: "Brilla con sabiduría y gracia" },
+  { palabra: "Noble 🕊️", significado: "Tiene un corazón puro y bondadoso" },
+  { palabra: "Valiosa 💎", significado: "Una mujer que realmente vale la pena" },
+  { palabra: "Leal 🤍", significado: "Permanece incluso cuando todo cambia" },
+  { palabra: "Tierna 🩷", significado: "Su forma de mirar transmite calma" },
+  { palabra: "Soñadora ☁️", significado: "Cree en lo imposible y lo vuelve real" },
+  { palabra: "Fuerte ⚔️", significado: "Supera todo con elegancia y fe" },
+  { palabra: "Brillante 🌟", significado: "Ilumina incluso los días más grises" },
+  { palabra: "Encantadora 💞", significado: "Tiene algo que hechiza sin esfuerzo" },
+  { palabra: "Apasionada 🔥", significado: "Ama con intensidad y verdad" },
+  { palabra: "Sincera 💬", significado: "Dice lo que siente, sin máscaras" },
+  { palabra: "Inspiradora 🌻", significado: "Su presencia motiva a ser mejor" },
+  { palabra: "Pacífica ☮️", significado: "Su calma es refugio para el alma" },
+  { palabra: "Sabia 📖", significado: "Aprende del corazón y enseña con amor" },
+  { palabra: "Hermosa 💐", significado: "Por dentro y por fuera, simplemente perfecta" },
+  { palabra: "Compasiva 🤲", significado: "Entiende sin juzgar, abraza sin pedir" },
+  { palabra: "Radiante 🌅", significado: "Su luz hace que todo cobre vida" },
+  { palabra: "Sensible 🦋", significado: "Siente el mundo de una forma que pocos entienden" },
+  { palabra: "Segura 💎", significado: "Sabe quién es y lo demuestra con elegancia" },
+  { palabra: "Inolvidable 💘", significado: "Deja huellas donde pisa" },
+  { palabra: "Mi razón 💞", significado: "La razón de mis sonrisas" },
+  { palabra: "Perfecta 🌷", significado: "Porque no le falta nada para serlo" }
+];
+
+const daniel = document.getElementById("daniel");
+const contador = document.getElementById("contador");
+const mensajeFinal = document.getElementById("mensajeFinal");
+
+let posX = window.innerWidth / 2 - 50;
+const velocidad = 45;
+let atrapadas = 0;
+let juegoActivo = true;
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") mover(-1);
+  if (e.key === "ArrowRight") mover(1);
+});
+
+document.getElementById("btnLeft").addEventListener("touchstart", () => mover(-1));
+document.getElementById("btnRight").addEventListener("touchstart", () => mover(1));
+
+function mover(direccion) {
+  if (!juegoActivo) return;
+  posX += direccion * velocidad;
+  posX = Math.max(0, Math.min(window.innerWidth - 100, posX));
+  daniel.style.left = posX + "px";
+}
+
+function crearObjeto() {
+  if (!juegoActivo) return;
+
+  const item = palabras[Math.floor(Math.random() * palabras.length)];
+  const contenedor = document.createElement("div");
+  contenedor.className = "objeto";
+  contenedor.style.left = Math.random() * (window.innerWidth - 200) + "px";
+
+  const texto = document.createElement("div");
+  texto.textContent = item.palabra;
+
+  const significado = document.createElement("div");
+  significado.className = "significado";
+  significado.textContent = item.significado;
+
+  contenedor.appendChild(texto);
+  contenedor.appendChild(significado);
+  document.body.appendChild(contenedor);
+
+  const checkColision = setInterval(() => {
+    const objetoRect = contenedor.getBoundingClientRect();
+    const danielRect = daniel.getBoundingClientRect();
+
+    if (
+      objetoRect.bottom >= danielRect.top &&
+      objetoRect.left < danielRect.right &&
+      objetoRect.right > danielRect.left
+    ) {
+      crearCorazones(contenedor.offsetLeft, contenedor.offsetTop);
+      contenedor.remove();
+      atrapadas++;
+      contador.textContent = `✨ ${atrapadas} atrapadas ✨`;
+      clearInterval(checkColision);
+      if (atrapadas >= 20) mostrarFinal();
+    }
+  }, 100);
+
+  setTimeout(() => {
+    contenedor.remove();
+    clearInterval(checkColision);
+  }, 6000);
+}
+
+function crearCorazones(x, y) {
+  for (let i = 0; i < 6; i++) {
+    const c = document.createElement("div");
+    c.className = "corazon";
+    c.textContent = "💖";
+    c.style.left = x + (Math.random() * 60 - 30) + "px";
+    c.style.top = y + "px";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 1000);
+  }
+}
+
+function mostrarFinal() {
+  juegoActivo = false;
+  mensajeFinal.style.display = "block";
+}
+
+setInterval(crearObjeto, 1200);
+</script>
+</body>
+</html>
